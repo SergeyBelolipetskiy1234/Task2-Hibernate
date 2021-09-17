@@ -1,7 +1,5 @@
 package jm.task.core.jdbc.dao;
 
-//import com.mysql.cj.Query;
-
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
@@ -16,7 +14,6 @@ public class UserDaoHibernateImpl implements UserDao {
     public UserDaoHibernateImpl() {
 
     }
-
 
     @Override
     public void createUsersTable() {
@@ -33,8 +30,6 @@ public class UserDaoHibernateImpl implements UserDao {
            e.printStackTrace();
         }
     }
-
-
 
     @Override
     public void dropUsersTable() {
@@ -79,9 +74,6 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-   /*     Session session = sessionFactory.openSession();
-      Transaction transaction = session.beginTransaction();
-      List<User> users = session.createCriteria(User.class).list();  */
        List<User> users = (List<User>)  sessionFactory.openSession().createQuery("From User").list();
 
         return users;
