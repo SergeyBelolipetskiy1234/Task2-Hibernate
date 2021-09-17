@@ -14,13 +14,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void createUsersTable() {
-      /*  String insert = "create table users (\n" +
-                "id_user int (10) AUTO_INCREMENT,\n" +
-                "name varchar(20) NOT NULL,\n" +
-                "email varchar(50) NOT NULL,\n" +
-                "password varchar(15) NOT NULL,\n" +
-                "PRIMARY KEY (id_user)\n" +
-                ");";  */
+
         String insert = "CREATE TABLE IF NOT EXISTS users (id BIGINT NOT NULL AUTO_INCREMENT, name VARCHAR(45), lastName VARCHAR(45), age SMALLINT NOT NULL, PRIMARY KEY (id))";
         try (PreparedStatement prepared = connection.prepareStatement(insert)) {
             prepared.executeUpdate(insert);
@@ -40,7 +34,6 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void saveUser(String name, String lastName, byte age) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users (name , lastName , age ) VALUES (?, ?, ?)")) {
-           // String sql = "INSERT INTO users (name , lastName , age ) VALUES (?, ?, ?)";
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
